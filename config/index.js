@@ -1,5 +1,5 @@
 import Components from 'unplugin-vue-components/webpack';
-
+import { TaroWeappTailwindcssWebpackPluginV5 } from 'weapp-tailwindcss-webpack-plugin'
 const NutUIResolver = () => {
   return (name) => {
     if (name.startsWith('Nut')) {
@@ -16,7 +16,7 @@ const NutUIResolver = () => {
 const config = {
   projectName: 'myApp',
   date: '2023-2-26',
-  designWidth (input) {
+  designWidth(input) {
     if (input?.file?.replace(/\\+/g, '/').indexOf('@nutui') > -1) {
       return 375
     }
@@ -43,11 +43,11 @@ const config = {
   compiler: {
     type: 'webpack5',
     prebundle: { enable: false }
-  }, 
+  },
   cache: {
     enable: false // Webpack 持久化缓存配置，建议开启。默认配置请参考：https://docs.taro.zone/docs/config-detail#cache
   },
-  sass:{
+  sass: {
     data: `@import "@nutui/nutui-taro/dist/styles/variables.scss";`
   },
   mini: {
@@ -55,6 +55,19 @@ const config = {
       chain.plugin('unplugin-vue-components').use(Components({
         resolvers: [NutUIResolver()]
       }))
+
+      const opt = {
+        framework: 'vue3',
+        customReplaceDictionary: 'simple'
+      }
+      chain.merge({
+        plugin: {
+          install: {
+            plugin: TaroWeappTailwindcssWebpackPluginV5,
+            args: [opt]
+          }
+        }
+      })
     },
     postcss: {
       pxtransform: {

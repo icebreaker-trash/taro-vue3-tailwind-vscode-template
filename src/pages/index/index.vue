@@ -1,5 +1,5 @@
 <template>
-  <view class="index">
+  <view>
     <view>
       <img src="" alt="">
     </view>
@@ -8,6 +8,8 @@
       <nut-button type="primary" @click="handleClick('text', msg2, true)">点我</nut-button>
     </view>
     <nut-toast :msg="msg2" v-model:visible="show" :type="type" :cover="cover"/>
+    <view class="p-2 w-32 bg-gray-200">p-2 w-32 bg-gray-200</view>
+    <text class="text-[50rpx] text-[#123456]">text-[50rpx] text-[#123456]</text>
   </view>
 </template>
 
