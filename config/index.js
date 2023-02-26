@@ -58,7 +58,7 @@ const config = {
 
       const opt = {
         framework: 'vue3',
-        customReplaceDictionary: 'simple'
+        // customReplaceDictionary: 'simple'
       }
       chain.merge({
         plugin: {
